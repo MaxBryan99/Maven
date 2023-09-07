@@ -8,7 +8,7 @@ pipeline {
         stage('Build Artifact') {
             steps {
                 bat "mvn clean package -DskipTests=true"
-                archiveArtifacts artifacts: 'target/.jar', fingerprint: true
+                archiveArtifacts artifacts: 'target', fingerprint: true
             }
         }
         stage('Test Maven - JUnit') {
