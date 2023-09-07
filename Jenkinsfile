@@ -8,7 +8,7 @@ pipeline {
         stage('Build Artifact') {
             steps {
                 bat "mvn clean package -DskipTests=true"
-                archiveArtifacts artifacts: 'target', fingerprint: true
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
             }
         }
         stage('Test Maven - JUnit') {
@@ -17,7 +17,7 @@ pipeline {
             }
             post {
                 always {
-                    junit 'target/surefire-reports/.xml'
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
